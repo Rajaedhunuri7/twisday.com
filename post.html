@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Story — Twisday</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Outfit:wght@200;300;400;500;600&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <!-- Ambient background glow blobs -->
+  <div class="ambient-glow glow-1"></div>
+  <div class="ambient-glow glow-2"></div>
+
+  <div class="content-wrapper">
+    <header class="site-header fade-in">
+      <a href="index.html" class="logo">Twisday<span class="dot">.</span></a>
+    </header>
+
+    <main class="post-main">
+      <nav class="post-nav fade-in" style="animation-delay: 0.1s;">
+        <a href="index.html" class="back-link">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" class="arrow-icon">
+            <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round" />
+          </svg>
+          Back to stories
+        </a>
+      </nav>
+
+      <article class="post-single fade-in-up" id="post-content" style="animation-delay: 0.2s;">
+        <div class="loading">
+          <div class="spinner"></div>
+          <p>Unfolding thought…</p>
+        </div>
+      </article>
+    </main>
+
+    <footer class="site-footer fade-in" style="animation-delay: 0.4s;">
+      <div class="footer-divider"></div>
+      <p>Written with care &middot; Updated every weekend</p>
+    </footer>
+  </div>
+
+  <script src="posts.js"></script>
+  <script src="app.js"></script>
+  <script>
+    // Post page: load specific post by ID from URL
+    const params = new URLSearchParams(window.location.search);
+    const postId = parseInt(params.get('id'), 10);
+    const container = document.getElementById('post-content');
+
+    if (isNaN(postId)) {
+      container.innerHTML = '<p class="loading">Story not found.</p>';
+    } else {
+      loadPosts().then(posts => {
+        const post = posts[postId];
+        if (!post) {
+          container.innerHTML = '<p class="loading">Story not found.</p>';
+          return;
+        }
+
+        document.title = `${post.title} — Twisday`;
+
+        container.innerHTML = `
+          <header class="post-header">
+            <div class="post-meta">
+              <time datetime="${post.date}">${formatDate(post.date)}</time>
+              <span class="reading-time">${estimateReadingTime(post.content)}</span>
+            </div>
+            <h1>${escapeHtml(post.title)}</h1>
+          </header>
+          <div class="post-divider"></div>
+          <div class="post-body">
+            ${formatContent(post.content)}
+          </div>
+        `;
+      });
+    }
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Twisday — Thoughts &amp; Feelings</title>
+  <meta name="description" content="A quiet space for what’s on my mind. New post every weekend.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Outfit:wght@200;300;400;500;600&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <!-- Ambient background glow blobs -->
+  <div class="ambient-glow glow-1"></div>
+  <div class="ambient-glow glow-2"></div>
+  <div class="ambient-glow glow-3"></div>
+
+  <div class="content-wrapper">
+    <header class="site-header fade-in">
+      <a href="index.html" class="logo">Twisday<span class="dot">.</span></a>
+      <p class="tagline">Thoughts &amp; feelings, one weekend at a time</p>
+    </header>
+
+    <main class="home-main">
+      <section class="intro fade-in" style="animation-delay: 0.1s;">
+        <p class="intro-text">"A quiet space for what’s on my mind.<br>New post every weekend."</p>
+      </section>
+
+      <section id="calendar-section" class="calendar-section fade-in" style="animation-delay: 0.15s;">
+        <!-- Calendar rendered by JavaScript -->
+      </section>
+
+      <div id="filter-container"></div>
+
+      <section class="posts-list" id="posts-list">
+        <!-- Posts loaded by JavaScript -->
+        <div class="loading fade-in" id="loading" style="animation-delay: 0.2s;">
+          <div class="spinner"></div>
+          <p>Unfolding thoughts…</p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer fade-in">
+      <div class="footer-divider"></div>
+      <p>Written with care &middot; Updated every weekend</p>
+    </footer>
+  </div>
+
+  <script src="posts.js"></script>
+  <script src="app.js"></script>
+  <script>
+    if (typeof initHome === 'function') {
+      initHome();
+    }
+  </script>
+</body>
+
+</html>
