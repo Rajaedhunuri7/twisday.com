@@ -1,0 +1,231 @@
+/* Twisday — warm, readable, personal */
+
+:root {
+  --bg: #faf8f5;
+  --paper: #fffefb;
+  --ink: #2c2925;
+  --ink-soft: #5c564e;
+  --accent: #8b6914;
+  --accent-soft: #c4a535;
+  --border: #e8e2d9;
+  --serif: 'Cormorant Garamond', Georgia, serif;
+  --sans: 'Outfit', system-ui, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 1.65;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header */
+.site-header {
+  padding: 2rem 1.5rem 1rem;
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+}
+
+.logo {
+  font-family: var(--serif);
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: var(--ink);
+  text-decoration: none;
+  letter-spacing: 0.02em;
+}
+
+.logo:hover {
+  color: var(--accent);
+}
+
+.tagline {
+  margin: 0.35rem 0 0;
+  font-size: 0.9rem;
+  font-weight: 300;
+  color: var(--ink-soft);
+  letter-spacing: 0.03em;
+}
+
+/* Main */
+.home-main,
+.post-main {
+  flex: 1;
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem 4rem;
+  width: 100%;
+}
+
+.intro {
+  margin-bottom: 2.5rem;
+}
+
+.intro-text {
+  font-family: var(--serif);
+  font-size: 1.25rem;
+  font-style: italic;
+  color: var(--ink-soft);
+  margin: 0;
+}
+
+/* Post list */
+.posts-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.post-card {
+  background: var(--paper);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.post-card:hover {
+  border-color: var(--accent-soft);
+  box-shadow: 0 4px 20px rgba(139, 105, 20, 0.08);
+}
+
+.post-card a {
+  display: block;
+  padding: 1.5rem 1.25rem;
+  color: inherit;
+  text-decoration: none;
+}
+
+.post-card time {
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--accent);
+  text-transform: uppercase;
+}
+
+.post-card h2 {
+  font-family: var(--serif);
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 0.4rem 0 0.5rem;
+  line-height: 1.3;
+  color: var(--ink);
+}
+
+.post-card .excerpt {
+  margin: 0;
+  font-size: 0.95rem;
+  color: var(--ink-soft);
+  line-height: 1.55;
+}
+
+.loading {
+  color: var(--ink-soft);
+  font-style: italic;
+}
+
+/* Single post */
+.post-single {
+  background: var(--paper);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 2rem 1.75rem;
+  margin-bottom: 2rem;
+}
+
+.post-header {
+  margin-bottom: 1.75rem;
+}
+
+.post-header time {
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--accent);
+  text-transform: uppercase;
+}
+
+.post-header h1 {
+  font-family: var(--serif);
+  font-size: 2rem;
+  font-weight: 600;
+  margin: 0.4rem 0 0;
+  line-height: 1.25;
+  color: var(--ink);
+}
+
+.post-body {
+  font-family: var(--serif);
+  font-size: 1.2rem;
+  line-height: 1.75;
+  color: var(--ink);
+}
+
+.post-body p {
+  margin: 0 0 1rem;
+}
+
+.post-body p:last-child {
+  margin-bottom: 0;
+}
+
+.post-body strong {
+  font-weight: 600;
+}
+
+.post-body em {
+  font-style: italic;
+}
+
+.post-nav {
+  margin-top: 0.5rem;
+}
+
+.back-link {
+  font-size: 0.95rem;
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.back-link:hover {
+  color: var(--ink);
+  text-decoration: underline;
+}
+
+/* Footer */
+.site-footer {
+  padding: 1.25rem 1.5rem;
+  text-align: center;
+  border-top: 1px solid var(--border);
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+}
+
+.site-footer p {
+  margin: 0;
+}
+
+@media (max-width: 520px) {
+  .home-main, .post-main {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  .post-header h1 {
+    font-size: 1.6rem;
+  }
+  .post-body {
+    font-size: 1.1rem;
+  }
+}

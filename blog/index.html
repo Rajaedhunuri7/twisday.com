@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Twisday — Thoughts &amp; Feelings</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <a href="index.html" class="logo">Twisday</a>
+    <p class="tagline">Thoughts &amp; feelings, one weekend at a time</p>
+  </header>
+
+  <main class="home-main">
+    <section class="intro">
+      <p class="intro-text">A quiet space for what’s on my mind. New post every weekend.</p>
+    </section>
+
+    <section class="posts-list" id="posts-list">
+      <!-- Posts loaded by JavaScript -->
+      <p class="loading" id="loading">Loading posts…</p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>Written with care · Updated every weekend</p>
+  </footer>
+
+  <script src="app.js"></script>
+  <script>
+    // Home page: render list of posts
+    loadPosts().then(posts => {
+      const container = document.getElementById('posts-list');
+      const loading = document.getElementById('loading');
+      if (!posts || posts.length === 0) {
+        loading.textContent = 'No posts yet. Add your first one in posts.json!';
+        return;
+      }
+      loading.remove();
+      posts.forEach((post, index) => {
+        const el = document.createElement('article');
+        el.className = 'post-card';
+        el.innerHTML = `
+          <a href="post.html?id=${index}">
+            <time datetime="${post.date}">${formatDate(post.date)}</time>
+            <h2>${escapeHtml(post.title)}</h2>
+            <p class="excerpt">${escapeHtml(post.excerpt || post.content.slice(0, 120) + '…')}</p>
+          </a>
+        `;
+        container.appendChild(el);
+      });
+    });
+  </script>
+</body>
+</html>
